@@ -38,8 +38,8 @@ pipeline {
         stage('Deploy App') {
             steps {
                 sh """
-                    sudo docker ps -q --filter "name=my-devops-app" | grep -q . && docker stop my-devops-app && docker rm my-devops-app || true
-                    sudo docker run -d --name my-devops-app -p 5000:5000 $DOCKER_IMAGE
+                    docker ps -q --filter "name=my-devops-app" | grep -q . && docker stop my-devops-app && docker rm my-devops-app || true
+                    docker run -d --name my-devops-app -p 5000:5000 $DOCKER_IMAGE
                 """
             }
         }
